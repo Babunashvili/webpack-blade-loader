@@ -56,7 +56,7 @@ Default: `'.blade.html'`
 
 The extension of the template files.
 
-## Code Formmating
+## Code Formatting
 
 ### Visual Studio Code
 
