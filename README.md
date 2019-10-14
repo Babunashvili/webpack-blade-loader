@@ -72,4 +72,38 @@ First of all, you need to install `Laravel Blade Snippets` extention. Then open 
 ```
 After that, your editor will support Laravel blade snippets and syntax highlight.
 
+## Example
+
+### layout.blade.html
+
+```html
+<html>
+  <head>
+    <title>App Name - @yield('title')</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">@section('sidebar')</div>
+      <div class="content">@yield('content')</div>
+    </div>
+  </body>
+</html>
+
+```
+ ### index.blade.html
+
+```html
+@extends('layout') 
+@section('title', 'Home Page') 
+
+@section('sidebar')
+<p>This is my sidebar.</p>
+@endsection 
+
+@section('content')
+<p>This is my body content.</p>
+@endsection
+
+```
+
  
