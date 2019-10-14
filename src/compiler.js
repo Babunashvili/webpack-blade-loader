@@ -4,6 +4,7 @@ const matchAll = helper.matchAll;
 
 /**
  * @param  {String} source
+* @return  {String}
  */
 function getExtend(source) {
   const regex = /@extends\((.*?)\)/;
@@ -12,8 +13,11 @@ function getExtend(source) {
     return args[0] ? args[0][1] : "";
   });
 }
+
 /**
  * @param  {String} source
+ * @param  {Object} options
+ * @return  {String}
  */
 function getLayout(source, options) {
   var layoutPath = getExtend(source)[0];
