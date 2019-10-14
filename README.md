@@ -61,7 +61,7 @@ The extension of the template files.
 ### Visual Studio Code
 
 First of all, you need to install `Laravel Blade Snippets` extention. Then open settings.json and add following lines:
-`
+```js
 "blade.format.enable": true,
 "files.associations":{
   "*.blade.html": "blade"
@@ -69,7 +69,7 @@ First of all, you need to install `Laravel Blade Snippets` extention. Then open 
 "[blade]":{
   "editor.formatOnSave": true,
 },
-`
+```
 After that, your editor will support Laravel blade snippets and syntax highlight.
 
  
