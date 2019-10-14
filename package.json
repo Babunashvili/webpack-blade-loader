@@ -1,0 +1,46 @@
+{
+  "name": "webpack-blade-loader",
+  "version": "1.0.0",
+  "description": "Webpack loader for blade template engine",
+  "main": "src/index.js",
+  "engines": {
+    "node": "^12.11.1",
+    "npm": "^6.11.3"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --open --config webpack/webpack.dev.js",
+    "build": "webpack --config webpack/webpack.prod.js",
+    "eslint:test": "eslint src",
+    "eslint:fix": "eslint src --fix",
+    "prettier:test": "prettier --check \"./**/*.{json,js}\"",
+    "prettier:fix": "prettier --write \"./**/*.{json,js}\"",
+    "test": "npm run eslint:test && npm run prettier:test",
+    "fix": "npm run eslint:fix && npm run prettier:fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://babunashvili@github.com/Babunashvili/webpack-blade-loader.git"
+  },
+  "keywords": [
+    "blade",
+    "webpack",
+    "template",
+    "engine"
+  ],
+  "author": "David Babunashvili",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Babunashvili/webpack-blade-loader/issues"
+  },
+  "homepage": "https://github.com/Babunashvili/webpack-blade-loader#readme",
+  "dependencies": {
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "loader-utils": "^1.2.3",
+    "prettier": "^1.18.2",
+    "schema-utils": "^2.4.1"
+  }
+}
