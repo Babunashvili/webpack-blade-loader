@@ -4,7 +4,7 @@ const matchAll = helper.matchAll;
 
 /**
  * @param  {String} source
-* @return  {String}
+ * @return  {String}
  */
 function getExtend(source) {
   const regex = /@extends\((.*?)\)/;
@@ -22,19 +22,70 @@ function getExtend(source) {
 function getLayout(source, options) {
   var layoutPath = getExtend(source)[0];
 
-  if(layoutPath){
-    const viewPath = options.viewPath + "/" || "";
+  if (layoutPath) {
+    const viewDir = options.viewDir + "/" || "";
     const extension = options.extension || ".blade.html";
-    layoutPath = viewPath + layoutPath.split(".").join("/") + extension;
-  
+    layoutPath = viewDir + layoutPath.split(".").join("/") + extension;
+
     if (fs.existsSync(layoutPath)) {
       const layoutContent = fs.readFileSync(layoutPath, "utf8");
       return layoutContent;
     }
-  
+
     throw "The file " + layoutPath + " doesn't exist.";
   }
   throw "The `extends` directive doesn't exist.";
+}
+/**
+ * @param  {String} path
+ * @param  {Object} options
+ * @return  {String}
+ */
+function getComponent(path, options) {
+  const viewDir = options.viewDir + "/" || "";
+  const extension = options.extension || ".blade.html";
+  const componentPath = viewDir + path.split(".").join("/") + extension;
+
+  if (fs.existsSync(componentPath)) {
+    const componentContent = fs.readFileSync(componentPath, "utf8");
+    return componentContent;
+  }
+
+  throw "The file " + componentPath + " doesn't exist.";
+}
+/**
+ * @param  {String} source
+ * @return  {Array}
+ */
+function getComponents(source) {
+  const regex = /@component\(('|")(.*)('|")\)((.|\n)*?)@endcomponent/gim;
+  return matchAll(source, regex).map(function(match) {
+    return {
+      key: match[2],
+      match: match[0],
+      value: match[4]
+    };
+  });
+}
+
+/**
+ * @param  {String} source
+ * @param  {Object} options
+ * @return  {String}
+ */
+function componentCompiler(source, options) {
+  let content = source;
+  getComponents(source).forEach(function(component) {
+    content = content.replace(
+      component.match,
+      getComponent(component.key, options).replace(
+        /{{\sslot\s}}/,
+        component.value
+      )
+    );
+  });
+
+  return content;
 }
 /**
  * @param  {String} source
@@ -55,7 +106,7 @@ function compiler(source, options) {
   });
   const directivesWithContent = matchAll(
     source,
-    /@section\(('|")(\s*.*\s*)('|")\)(\s*.*\s*)@endsection/gim
+    /@section\(('|")(\w+)('|")\)((.|\n)*?)@endsection/gim
   ).map(function(match) {
     return {
       key: match[2],
@@ -70,7 +121,10 @@ function compiler(source, options) {
       "@(.*?)\\(('|\")" + directive.key + "('|\")\\)",
       "g"
     );
-    content = content.replace(regex, directive.value);
+    content = content.replace(
+      regex,
+      componentCompiler(directive.value, options)
+    );
   });
 
   return content;

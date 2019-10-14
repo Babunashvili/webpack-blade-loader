@@ -28,7 +28,7 @@ module.exports = {
           {
             loader: "webpack-blade-loader",
             options: {
-              viewPath: "./views"
+              viewDir: "./views"
             }
           }
         ],
@@ -42,7 +42,7 @@ And run `webpack` via your preferred method.
 
 ## Options
 
-### `viewPath`
+### `viewDir`
 
 Type: `String`
 Default: `''`
