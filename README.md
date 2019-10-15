@@ -102,6 +102,11 @@ After that, your editor will support Laravel blade snippets and syntax highlight
 
 @section('content')
 <p>This is my body content.</p>
+// Static component
+@component('components.button')
+// Dynamic components
+@component('components.button',{"name":"David"})
+@component('components.button',{"name":"John","age":21}) <b>Button</b> content @endcomponent
 @endsection
 
 ```
