@@ -7,6 +7,9 @@
     "node": "^12.11.1",
     "npm": "^6.11.3"
   },
+  "scripts": {
+    "test": "jest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://babunashvili@github.com/Babunashvili/webpack-blade-loader.git"
@@ -27,5 +30,8 @@
     "loader-utils": "^1.2.3",
     "prettier": "^1.18.2",
     "schema-utils": "^2.4.1"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
