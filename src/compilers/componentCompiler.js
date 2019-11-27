@@ -27,7 +27,7 @@ function getComponentContent(path, options) {
 function getComponents(source) {
   const regex = [
     /^\s*@component\(('|")(.*)('|")(,\s*({.*})(.*))?\)((.*?|\n(.*)\n))@endcomponent$/gim,
-    /^\s*@component\(('|")(.*)('|")(,\s*({.*})(.*))?\)(.?)$/gim,
+    /^\s*@component\(('|")(.*)('|")(,\s*({.*})(.*))?\)(.?)$/gim
   ];
 
   return regex
@@ -63,6 +63,8 @@ function compiler(source, options) {
         .replace(/{{\sslot\s}}/, component.content)
         .replaceAll(find, replace)
     );
+
+    content = compiler(content, options);
   });
 
   return content;
