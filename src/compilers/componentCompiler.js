@@ -26,8 +26,8 @@ function getComponentContent(path, options) {
  */
 function getComponents(source) {
   const regex = [
-    /^@component\(('|")(.*)('|")(,({.*})(.*))?\)((.*?|\n(.*)\n))@endcomponent$$/gim,
-    /^@component\(('|")(.*)('|")(,({.*})(.*))?\)(.?)$/gim
+    /^\s*@component\(('|")(.*)('|")(,\s*({.*})(.*))?\)((.*?|\n(.*)\n))@endcomponent$/gim,
+    /^\s*@component\(('|")(.*)('|")(,\s*({.*})(.*))?\)(.?)$/gim,
   ];
 
   return regex

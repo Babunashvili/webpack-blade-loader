@@ -9,6 +9,12 @@
 <p>This is my body content.</p>
 
 @component('components.button',{"name":"david"})
-@component('components.button',{"name":"anny"}) button content @endcomponent
+@component('components.button', {"name":"anny"}) button content @endcomponent
+<div>
+  @component('components.button',{"name":"alex"})
+  <div>
+    @component('components.button',{"name":"bill"})
+  </div>
+</div>
 
 @endsection
